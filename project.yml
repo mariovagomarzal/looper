@@ -1,0 +1,40 @@
+name: Looper
+
+options:
+  bundleIdPrefix: com.mariovagomarzal
+  deploymentTarget:
+    macOS: "15.0"
+
+packages:
+  LooperCore:
+    path: Packages/LooperCore
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+
+targets:
+  Looper:
+    type: application
+    platform: macOS
+    sources:
+      - App/Looper
+    dependencies:
+      - package: LooperCore
+    scheme:
+      testTargets: []
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.mariovagomarzal.Looper
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Looper
+        # Menu bar app without a Dock icon.
+        INFOPLIST_KEY_LSUIElement: YES
+        # The Accessibility API doesn't work inside the App Sandbox.
+        ENABLE_APP_SANDBOX: NO
+        # Ad hoc signing for now. macOS ties the Accessibility permission to
+        # the signature, so this needs a stable identity later.
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_STYLE: Manual
