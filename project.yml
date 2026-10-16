@@ -34,7 +34,7 @@ targets:
         INFOPLIST_KEY_LSUIElement: YES
         # The Accessibility API doesn't work inside the App Sandbox.
         ENABLE_APP_SANDBOX: NO
-        # Ad hoc signing for now. macOS ties the Accessibility permission to
-        # the signature, so this needs a stable identity later.
-        CODE_SIGN_IDENTITY: "-"
+        # macOS ties the Accessibility permission to the signing identity, so
+        # builds use a stable self-signed certificate from the login keychain.
+        CODE_SIGN_IDENTITY: Looper Development
         CODE_SIGN_STYLE: Manual
